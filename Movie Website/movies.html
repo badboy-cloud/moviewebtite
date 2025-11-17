@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movies – ChillOut</title>
+  <link rel="stylesheet" href="App.css" />
+  <link rel="stylesheet" href="Grid.css" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <style>
+    /* Responsive full-width grid for movies */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      width: 100%;
+    }
+
+    .movie-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      background: #111;
+    }
+
+    .movie-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .movie-item:hover {
+      transform: scale(1.05);
+    }
+
+    .movie-item-content {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+      padding: 10px;
+      color: #fff;
+    }
+
+    .movie-item-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .movie-infos {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+
+    .movie-infos i {
+      color: #e50914;
+    }
+
+    .section-header {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--main-color);
+      margin-bottom: 20px;
+    }
+
+    .see-more-btn {
+      background: var(--main-color);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .see-more-btn:hover {
+      background: #e50914;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="nav-wrapper">
+    <div class="container">
+      <div class="nav">
+        <a href="index.html" class="logo">
+          <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+        </a>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="genre.html">Genre</a></li>
+          <li><a href="movies.html" class="main-color">Movies</a></li>
+          <li><a href="series.html">Series</a></li>
+          <li><a href="about.html">About</a></li>
+          <li id="signin-btn">
+            <a href="signin.html" class="btn btn-hover"><span>Sign in</span></a>
+          </li>
+          <li id="logout-btn" style="display: none;">
+            <a href="#" class="btn btn-hover" onclick="logout()"><span>Logout</span></a>
+          </li>
+        </ul>
+        <div class="hamburger-menu" id="hamburger-menu">
+          <div class="hamburger"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOVIES SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">All Movies</div>
+
+      <!-- CATEGORY BUTTONS -->
+      <div class="movie-categories" style="display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap;">
+        <button class="see-more-btn" onclick="filterMovies('all')">All</button>
+        <button class="see-more-btn" onclick="filterMovies('action')">Action</button>
+        <button class="see-more-btn" onclick="filterMovies('comedy')">Comedy</button>
+        <button class="see-more-btn" onclick="filterMovies('animation')">Animation</button>
+      </div>
+
+      <!-- MOVIE GRID -->
+      <div class="grid-container" id="movieGrid">
+        <!-- ACTION MOVIES -->
+        <div class="movie-item action">
+          <a href="movie-player.html?title=Transformer&src=videos/transformer.mp4&poster=images/bg/movieplayer-bg1.jpg">
+            <img src="images/transformer.jpg" alt="Transformer" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Transformer</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 9.5</div>
+              <div>120 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-item action">
+          <a href="movie-player.html?title=Theatre%20of%20the%20Dead&src=videos/theatre-dead.mp4&poster=images/bg/movieplayer-bg2.jpg">
+            <img src="images/theatredead.jpg" alt="Theatre of the Dead" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Theatre of the Dead</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 9.5</div>
+              <div>120 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-item action">
+          <a href="movie-player.html?title=Avengers&src=videos/avengers.mp4&poster=images/bg/movieplayer-bg3.jpg">
+            <img src="images/avengers.jpg" alt="Avengers" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Avengers</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 9.5</div>
+              <div>120 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-item action">
+          <a href="movie-player.html?title=Batman&src=videos/batman.mp4&poster=images/bg/movieplayer-bg4.jpg">
+            <img src="images/bat-man.jpg" alt="batman" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Batman</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 9.5</div>
+              <div>120 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-item action">
+          <a href="movie-player.html?title=John%20Wick&src=videos/John-wick.mp4&poster=images/bg/movieplayer-bg5.jpg">
+            <img src="images/John-wick.jpg" alt="John Wick" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">John Wick</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 9.5</div>
+              <div>120 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-item action">
+          <a href="movie-player.html?title=The%20Falcon&src=videos/the-falcon.mp4&poster=images/bg/movieplayer-bg6.jpg">
+            <img src="images/the-falcon.webp" alt="The Falcon" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">The Falcon</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 9.5</div>
+              <div>120 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-item action">
+          <a href="movie-player.html?title=Wanda&src=videos/wanda.mp4&poster=images/bg/movieplayer-bg7.jpg">
+            <img src="images/wanda.png" alt="Wanda" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Wanda</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 9.5</div>
+              <div>120 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-item action">
+          <a href="movie-player.html?title=Bizon&src=videos/Bizon.mp4&poster=images/bg/movieplayer-bg8.jpg">
+            <img src="images/bizon.jpg" alt="Bizon" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Bizon</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 9.5</div>
+              <div>120 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-item action">
+          <a href="movie-player.html?title=Black%20Panther&src=videos/BlackPanther.mp4&poster=images/bg/movieplayer-bg9.jpg">
+            <img src="images/blackpanther.png" alt="Black Panther" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Black Panther</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 9.5</div>
+              <div>120 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-item action">
+          <a href="movie-player.html?title=BloodShot&src=videos/blood-shot.mp4&poster=images/bg/movieplayer-bg10.jpg">
+            <img src="images/blood-shot.jpg" alt="Bloodshot" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">BloodShot</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 9.5</div>
+              <div>120 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMEDY MOVIES -->
+
+        <div class="movie-item comedy">
+          <a href="movie-player.html?title=Aladdin&src=videos/Aladdin.mp4&poster=images/bg/movieplayer-bg11.jpg">
+            <img src="images/aladdin.jpg" alt="Aladdin" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Aladdin</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 8.0</div>
+              <div>90 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-item comedy">
+          <a href="movie-player.html?title=Jumanji&src=videos/jumanji.mp4&poster=images/bg/movieplayer-bg12.jpg">
+            <img src="images/jumanji.jpg" alt="Jumanji" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Jumanji: Welcome to the Jungle</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 8.5</div>
+              <div>125 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-item comedy">
+          <a href="movie-player.html?title=Mr%20Bean&src=videos/mrbean.mp4&poster=images/bg/movieplayer-bg13.jpg">
+            <img src="images/mrbean.jpg" alt="Mr Bean" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Mr. Bean’s Holiday</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 8.0</div>
+              <div>90 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANIMATION MOVIES -->
+        <div class="movie-item animation">
+          <a href="movie-player.html?title=Toy%20Story%204&src=videos/toystory.mp4&poster=images/bg/movieplayer-bg14.jpg">
+            <img src="images/toystory.jpg" alt="Toy Story 4" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Toy Story 4</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 8.9</div>
+              <div>100 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-item animation">
+          <a href="movie-player.html?title=Frozen%20II&src=videos/frozen.mp4&poster=images/bg/movieplayer-bg15.jpg">
+            <img src="images/frozen.jpg" alt="Frozen II" />
+          </a>
+          <div class="movie-item-content">
+            <div class="movie-item-title">Frozen II</div>
+            <div class="movie-infos">
+              <div><i class="bx bxs-star"></i> 9.0</div>
+              <div>115 mins</div>
+              <div>HD</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-md-6 col-sm-12">
+                    <div class="content">
+                        <a href="" class="logo">
+                            <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+                        </a>
+                        <p>
+                            At ChillOut, we believe entertainment should be simple, fun, and available anytime you need a break. From the latest blockbuster movies to timeless classics and trending series, our platform brings everything together in one seamless experience. Enjoy smooth streaming, personalized recommendations, and the freedom to watch anywhere, anytime — no limits, no interruptions, just pure cinematic joy.
+                        </p>
+                        <div class="social-list">
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>ChillOut</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="pricing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Browse</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="pricing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Help</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="princing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Download app</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/google-play.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/app-store.png" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- COPYRIGHT SECTION -->
+    <div class="copyright">
+        Copyright 2023  
+    </div>
+
+  <script>
+    // Mobile nav toggle
+    const hamburger = document.getElementById('hamburger-menu');
+    const navMenu = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Filter movies by category
+    function filterMovies(category) {
+      const items = document.querySelectorAll('.movie-item');
+      items.forEach(item => {
+        item.style.display = (category === 'all' || item.classList.contains(category)) ? 'block' : 'none';
+      });
+    }
+
+    // Auth buttons
+    function updateAuthButtons() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const signInBtn = document.getElementById('signin-btn');
+      const logoutBtn = document.getElementById('logout-btn');
+      if (isLoggedIn) {
+        if (signInBtn) signInBtn.style.display = 'none';
+        if (logoutBtn) logoutBtn.style.display = 'block';
+      } else {
+        if (signInBtn) signInBtn.style.display = 'block';
+        if (logoutBtn) logoutBtn.style.display = 'none';
+      }
+    }
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('userEmail');
+      alert('Logged out successfully!');
+      window.location.href = 'index.html';
+    }
+    updateAuthButtons();
+  </script>
+
+</body>
+</html>

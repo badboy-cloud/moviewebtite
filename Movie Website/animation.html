@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Animation Movies - ChillOut</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="grid.css">
+  <link rel="stylesheet" href="app.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+  <div class="nav-wrapper">
+    <div class="container">
+      <div class="nav">
+        <a href="index.html" class="logo">
+          <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+        </a>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="genre.html">Genre</a></li>
+          <li><a href="movies.html" class="active">Movies</a></li>
+          <li><a href="series.html">Series</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="signin.html" class="btn btn-hover"><span>Sign in</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-header">Animation Movies</div>
+      <div class="row" id="movieGrid"></div>
+    </div>
+  </div>
+
+  <script>
+    const movies = [
+      { title: "Toy Story", img: "images/movies/toy-story.jpg", video: "videos/toy-story.mp4" },
+      { title: "Minions", img: "images/movies/minions.jpg", video: "videos/minions.mp4" },
+      { title: "Frozen", img: "images/movies/frozen.jpg", video: "videos/frozen.mp4" },
+      { title: "Cars", img: "images/movies/cars.jpg", video: "videos/cars.mp4" },
+      { title: "Zootopia", img: "images/movies/zootopia.jpg", video: "videos/zootopia.mp4" }
+    ];
+
+    const grid = document.getElementById("movieGrid");
+    movies.forEach(m => {
+      const div = document.createElement("div");
+      div.className = "col-3 col-md-6 col-sm-12";
+      div.innerHTML = `
+        <a href="movie-player.html?title=${encodeURIComponent(m.title)}&src=${encodeURIComponent(m.video)}&poster=${encodeURIComponent(m.img)}" class="movie-item">
+          <img src="${m.img}" alt="${m.title}">
+          <div class="movie-item-content"><div class="movie-item-title">${m.title}</div></div>
+        </a>
+      `;
+      grid.appendChild(div);
+    });
+  </script>
+</body>
+</html>

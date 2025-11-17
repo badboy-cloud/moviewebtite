@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popular Series – ChillOut</title>
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="grid.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+      width: 100%;
+    }
+    .movie-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .movie-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .movie-item:hover {
+      transform: scale(1.05);
+    }
+    .movie-item-content {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    .movie-item-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .section-header {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--main-color);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="nav-wrapper">
+    <div class="container">
+      <div class="nav">
+        <a href="index.html" class="logo">
+          <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+        </a>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="genre.html">Genre</a></li>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="series.html" class="active">Series</a></li>
+          <li><a href="about.html">About</a></li>
+          <li id="signin-btn">
+            <a href="signin.html" class="btn btn-hover"><span>Sign in</span></a>
+          </li>
+          <li id="logout-btn" style="display: none;">
+            <a href="#" class="btn btn-hover" onclick="logout()"><span>Logout</span></a>
+          </li>
+        </ul>
+        <div class="hamburger-menu" id="hamburger-menu">
+          <div class="hamburger"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPULAR SERIES -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header">Popular Series</div>
+      <div class="movie-grid">
+
+        <a href="series-movie-player.html?title=Stranger%20Things&src=videos/stranger-things.mp4&poster=images/series-banner1.jpg" class="movie-item">
+          <img src="images/series1.jpg" alt="Stranger Things">
+          <div class="movie-item-content">
+            <div class="movie-item-title">Stranger Things</div>
+          </div>
+        </a>
+
+        <a href="series-movie-player.html?title=Money%20Heist&src=videos/money-heist.mp4&poster=images/series-banner2.jpg" class="movie-item">
+          <img src="images/series2.jpg" alt="Money Heist">
+          <div class="movie-item-content">
+            <div class="movie-item-title">Money Heist</div>
+          </div>
+        </a>
+
+        <a href="series-movie-player.html?title=The%20Witcher&src=videos/the-witcher.mp4&poster=images/series-banner3.jpg" class="movie-item">
+          <img src="images/series3.jpg" alt="The Witcher">
+          <div class="movie-item-content">
+            <div class="movie-item-title">The Witcher</div>
+          </div>
+        </a>
+
+        <a href="series-movie-player.html?title=Loki&src=videos/loki.mp4&poster=images/series-banner4.jpg" class="movie-item">
+          <img src="images/series4.jpg" alt="Loki">
+          <div class="movie-item-content">
+            <div class="movie-item-title">Loki</div>
+          </div>
+        </a>
+
+        <a href="series-movie-player.html?title=The%20Boys&src=videos/the-boys.mp4&poster=images/series-banner5.jpg" class="movie-item">
+          <img src="images/series5.jpg" alt="The Boys">
+          <div class="movie-item-content">
+            <div class="movie-item-title">The Boys</div>
+          </div>
+        </a>
+
+        <a href="series-movie-player.html?title=Wednesday&src=videos/wednesday.mp4&poster=images/series-banner6.jpg" class="movie-item">
+          <img src="images/series6.jpg" alt="Wednesday">
+          <div class="movie-item-content">
+            <div class="movie-item-title">Wednesday</div>
+          </div>
+        </a>
+
+        <a href="series-movie-player.html?title=Breaking%20Bad&src=videos/breaking-bad.mp4&poster=images/series-banner7.jpg" class="movie-item">
+          <img src="images/series7.jpg" alt="Breaking Bad">
+          <div class="movie-item-content">
+            <div class="movie-item-title">Breaking Bad</div>
+          </div>
+        </a>
+
+        <a href="series-movie-player.html?title=Peaky%20Blinders&src=videos/peaky-blinders.mp4&poster=images/series-banner8.jpg" class="movie-item">
+          <img src="images/series8.jpg" alt="Peaky Blinders">
+          <div class="movie-item-content">
+            <div class="movie-item-title">Peaky Blinders</div>
+          </div>
+        </a>
+
+        <a href="series-movie-player.html?title=Game%20of%20Thrones&src=videos/game-of-thrones.mp4&poster=images/series-banner9.jpg" class="movie-item">
+          <img src="images/series9.jpg" alt="Game of Thrones">
+          <div class="movie-item-content">
+            <div class="movie-item-title">Game of Thrones</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-md-6 col-sm-12">
+                    <div class="content">
+                        <a href="" class="logo">
+                            <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+                        </a>
+                        <p>
+                            At ChillOut, we believe entertainment should be simple, fun, and available anytime you need a break. From the latest blockbuster movies to timeless classics and trending series, our platform brings everything together in one seamless experience. Enjoy smooth streaming, personalized recommendations, and the freedom to watch anywhere, anytime — no limits, no interruptions, just pure cinematic joy.
+                        </p>
+                        <div class="social-list">
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>ChillOut</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="pricing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Browse</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="pricing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Help</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="princing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Download app</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/google-play.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/app-store.png" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- COPYRIGHT SECTION -->
+    <div class="copyright">
+        Copyright 2023  
+    </div>
+
+  <script>
+    const hamburger = document.getElementById("hamburger-menu");
+    const navMenu = document.getElementById("nav-menu");
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+    });
+
+    // Auth buttons
+    function updateAuthButtons() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const signInBtn = document.getElementById('signin-btn');
+      const logoutBtn = document.getElementById('logout-btn');
+      if (isLoggedIn) {
+        if (signInBtn) signInBtn.style.display = 'none';
+        if (logoutBtn) logoutBtn.style.display = 'block';
+      } else {
+        if (signInBtn) signInBtn.style.display = 'block';
+        if (logoutBtn) logoutBtn.style.display = 'none';
+      }
+    }
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('userEmail');
+      alert('Logged out successfully!');
+      window.location.href = 'index.html';
+    }
+    updateAuthButtons();
+  </script>
+
+</body>
+</html>

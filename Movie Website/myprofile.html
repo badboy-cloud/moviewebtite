@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>My Profile - ChillOut</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="shortcut icon" href="./images/movie logo.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="grid.css">
+  <link rel="stylesheet" href="app.css">
+  <style>
+    .profile-wrapper {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .profile-avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--main-color);
+      position: relative;
+    }
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .profile-avatar input {
+      display: none;
+    }
+    .profile-avatar label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 5px 0;
+    }
+    .profile-info {
+      flex: 1;
+      max-width: 500px;
+    }
+    .profile-info .input-group {
+      margin-bottom: 1.2rem;
+    }
+    .profile-info label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .profile-info input {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background: #111;
+      color: #fff;
+    }
+    .btn-save {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <div class="container">
+      <div class="nav">
+        <a href="index.html" class="logo">
+          <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+        </a>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="genre.html">Genre</a></li>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="series.html">Series</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="signin.html" class="btn btn-hover"><span>Sign in</span></a></li>
+        </ul>
+        <div class="hamburger-menu" id="hamburger-menu"><div class="hamburger"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Section -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header">My Profile</div>
+
+      <div class="profile-wrapper">
+        <div class="profile-avatar">
+          <img src="./images/avatar-placeholder.jpg" alt="User Avatar">
+          <input type="file" id="avatarUpload" accept="image/*">
+          <label for="avatarUpload">Change</label>
+        </div>
+
+        <div class="profile-info">
+          <form id="profileForm">
+            <div class="input-group">
+              <label for="username">Full Name</label>
+              <input type="text" id="username" name="username" value="John Doe">
+            </div>
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" value="john@example.com">
+            </div>
+            <div class="input-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" placeholder="••••••••">
+            </div>
+
+            <button type="submit" class="btn btn-hover btn-save"><span>Save Changes</span></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-md-6 col-sm-12">
+                    <div class="content">
+                        <a href="" class="logo">
+                            <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+                        </a>
+                        <p>
+                            At ChillOut, we believe entertainment should be simple, fun, and available anytime you need a break. From the latest blockbuster movies to timeless classics and trending series, our platform brings everything together in one seamless experience. Enjoy smooth streaming, personalized recommendations, and the freedom to watch anywhere, anytime — no limits, no interruptions, just pure cinematic joy.
+                        </p>
+                        <div class="social-list">
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>ChillOut</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="pricing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Browse</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="pricing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Help</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="princing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Download app</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/google-play.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/app-store.png" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- COPYRIGHT SECTION -->
+    <div class="copyright">
+        Copyright 2023  
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Simple image preview
+    document.getElementById('avatarUpload').addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => document.querySelector('.profile-avatar img').src = e.target.result;
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Example save handler
+    document.getElementById('profileForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Profile saved successfully!');
+    });
+  </script>
+</body>
+</html>

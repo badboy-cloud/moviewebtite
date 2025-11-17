@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Movie Player - ChillOut</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    :root{
+      --bg:#080808;
+      --panel:#0f0f0f;
+      --accent:#ff6b6b;
+      --muted:#9aa0a6;
+      --white:#fff;
+    }
+    html,body{height:100%;margin:0;font-family:"Cairo",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+    body{background:var(--bg);color:var(--white);display:flex;align-items:center;justify-content:center;padding:18px;}
+
+    .player-wrap{
+      width:min(1100px,96%);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+      border-radius:14px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.7);
+      overflow:hidden;
+    }
+
+    /* video area */
+    .video-area{position:relative;background:#000;}
+    video{
+      width:100%;
+      height:auto;
+      display:block;
+      background:#000;
+    }
+
+    /* big centered play button overlay */
+    .overlay-play{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .overlay-play .btn{
+      pointer-events:auto;
+      background:rgba(0,0,0,0.5);
+      border:2px solid rgba(255,255,255,0.06);
+      color:var(--white);
+      padding:22px 26px;
+      font-size:28px;
+      border-radius:999px;
+      display:flex;
+      gap:.6rem;
+      align-items:center;
+      cursor:pointer;
+      transition:transform .14s ease, background .12s ease;
+    }
+    .overlay-play .btn:hover{transform:scale(1.05);background:var(--accent); color:#000;}
+    .overlay-play .btn .label{font-weight:600;font-size:14px;}
+
+    /* control bar (secondary, optional) */
+    .controls{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 14px;
+      background:var(--panel);
+    }
+    .controls .left, .controls .right{display:flex;align-items:center;gap:8px;}
+    .controls button{
+      background:transparent;border:0;color:var(--white);font-size:18px;cursor:pointer;padding:8px;border-radius:8px;
+    }
+    .controls button:hover{background:rgba(255,255,255,0.03);}
+    .time{color:var(--muted);font-size:13px;min-width:64px;text-align:center;}
+    .progress{
+      -webkit-appearance:none;appearance:none;height:6px;border-radius:6px;background:#222;flex:1;
+      outline:none;
+    }
+    .progress::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid #000;cursor:pointer;margin-top:-4px;}
+    .meta{
+      padding:12px 14px;
+      display:flex;justify-content:space-between;align-items:center;background:transparent;color:var(--muted);
+      font-size:13px;
+    }
+    .title{font-weight:600;color:var(--white);}
+
+    /* responsive */
+    @media (max-width:640px){
+      .overlay-play .btn{padding:14px 18px;font-size:20px;}
+      .controls{padding:8px;}
+      .time{display:none;}
+    }
+  </style>
+</head>
+<body>
+  <div class="player-wrap" role="region" aria-label="Movie player">
+    <!-- top metadata -->
+    <div class="meta">
+      <div class="title">Captain Marvel — ChillOut Player</div>
+      <div class="meta-right">HD • 125 min</div>
+    </div>
+
+    <!-- video area -->
+    <div class="video-area">
+      <!-- Replace src and poster with your file paths -->
+      <video id="player" preload="metadata" poster="./videos/captain-marvel-poster.jpg" tabindex="0">
+        <source src="./videos/captain-marvel.mp4" type="video/mp4">
+        <!-- captions example (optional). Create VTT file if you want captions. -->
+        <!-- <track kind="subtitles" srclang="en" label="English" src="./captions/captain-marvel-en.vtt" default> -->
+        Sorry, your browser doesn't support embedded videos. You can <a href="./videos/captain-marvel.mp4" style="color:var(--accent)">download the movie</a>.
+      </video>
+
+      <!-- big overlay play button -->
+      <div class="overlay-play" id="overlay">
+        <button class="btn" id="bigPlay" aria-label="Play" title="Play">
+          <i class='bx bx-play' style="font-size:22px"></i>
+          <span class="label">Play</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- controls -->
+    <div class="controls" role="toolbar" aria-label="Player controls">
+      <div class="left">
+        <button id="playBtn" aria-label="Play/pause" title="Play / Pause"><i class='bx bx-play' id="playIcon"></i></button>
+        <button id="muteBtn" aria-label="Mute/unmute" title="Mute / Unmute"><i class='bx bx-volume-full' id="volIcon"></i></button>
+        <input class="progress" id="seek" type="range" min="0" max="100" value="0" aria-label="Seek">
+        <div class="time" id="time">0:00 / 0:00</div>
+      </div>
+
+      <div class="right">
+        <button id="fsBtn" aria-label="Fullscreen" title="Fullscreen"><i class='bx bx-fullscreen'></i></button>
+        <a id="downloadBtn" class="download" href="./videos/captain-marvel.mp4" download><button aria-label="Download" title="Download"><i class='bx bx-download'></i></button></a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Elements
+    const player = document.getElementById('player');
+    const bigPlay = document.getElementById('bigPlay');
+    const overlay = document.getElementById('overlay');
+    const playBtn = document.getElementById('playBtn');
+    const playIcon = document.getElementById('playIcon');
+    const muteBtn = document.getElementById('muteBtn');
+    const volIcon = document.getElementById('volIcon');
+    const seek = document.getElementById('seek');
+    const time = document.getElementById('time');
+    const fsBtn = document.getElementById('fsBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    // Utility: format seconds to mm:ss
+    function formatTime(s){
+      if (isNaN(s)) return '0:00';
+      const m = Math.floor(s/60);
+      const sec = Math.floor(s%60).toString().padStart(2,'0');
+      return `${m}:${sec}`;
+    }
+
+    // Update time & seek
+    player.addEventListener('loadedmetadata', () => {
+      seek.max = Math.floor(player.duration);
+      time.textContent = `${formatTime(0)} / ${formatTime(player.duration)}`;
+      // set download href to current src
+      const src = player.currentSrc || player.src;
+      downloadBtn.setAttribute('href', src);
+    });
+
+    player.addEventListener('timeupdate', () => {
+      seek.value = Math.floor(player.currentTime);
+      time.textContent = `${formatTime(player.currentTime)} / ${formatTime(player.duration)}`;
+    });
+
+    // Play / Pause handlers
+    function togglePlay(){
+      if (player.paused){
+        player.play();
+      } else {
+        player.pause();
+      }
+    }
+    function updatePlayIcon(){
+      if (player.paused){
+        playIcon.className = 'bx bx-play';
+        bigPlay.innerHTML = `<i class='bx bx-play' style="font-size:22px"></i> <span class="label">Play</span>`;
+        overlay.style.display = '';
+      } else {
+        playIcon.className = 'bx bx-pause';
+        bigPlay.innerHTML = `<i class='bx bx-pause' style="font-size:22px"></i> <span class="label">Pause</span>`;
+        overlay.style.display = 'none';
+      }
+    }
+
+    bigPlay.addEventListener('click', (e)=>{ e.stopPropagation(); togglePlay(); });
+    playBtn.addEventListener('click', togglePlay);
+    player.addEventListener('play', updatePlayIcon);
+    player.addEventListener('pause', updatePlayIcon);
+
+    // Click video to toggle
+    player.addEventListener('click', togglePlay);
+
+    // Seek bar
+    seek.addEventListener('input', (e)=>{ player.currentTime = e.target.value; });
+
+    // Mute toggle
+    muteBtn.addEventListener('click', () => {
+      player.muted = !player.muted;
+      volIcon.className = player.muted ? 'bx bx-volume-mute' : 'bx bx-volume-full';
+    });
+
+    // Fullscreen
+    fsBtn.addEventListener('click', async () => {
+      if (!document.fullscreenElement) {
+        await player.requestFullscreen?.() || document.documentElement.requestFullscreen?.();
+      } else {
+        document.exitFullscreen?.();
+      }
+    });
+
+    // Keyboard controls (space: play/pause, f: fullscreen, m: mute)
+    document.addEventListener('keydown', (e) => {
+      const active = document.activeElement;
+      // avoid interfering with input fields
+      if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA')) return;
+      if (e.code === 'Space'){ e.preventDefault(); togglePlay(); }
+      if (e.key.toLowerCase() === 'f'){ fsBtn.click(); }
+      if (e.key.toLowerCase() === 'm'){ muteBtn.click(); }
+      if (e.key === 'ArrowRight'){ player.currentTime = Math.min(player.duration, player.currentTime + 5); }
+      if (e.key === 'ArrowLeft'){ player.currentTime = Math.max(0, player.currentTime - 5); }
+    });
+
+    // Hide overlay on play state on load
+    if (!player.paused) overlay.style.display = 'none';
+    updatePlayIcon();
+
+    // Accessibility: focus styles
+    document.addEventListener('focusin', (e) => {
+      if (e.target.matches('button, [role="button"], .progress, a')) e.target.style.outline = '2px solid rgba(255,107,107,0.6)';
+    });
+    document.addEventListener('focusout', (e) => {
+      if (e.target.matches('button, [role="button"], .progress, a')) e.target.style.outline = 'none';
+    });
+  </script>
+</body>
+</html>

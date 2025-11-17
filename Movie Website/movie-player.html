@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Movie Player - ChillOut</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;700&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+  <style>
+    :root {
+      --bg: #070b0f;
+      --accent: #1f83ed;
+      --text-muted: #9aa0a6;
+      --card-bg: #101820;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Header */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+    }
+    .back {
+      background: transparent;
+      border: none;
+      color: var(--white);
+      font-size: 22px;
+      cursor: pointer;
+    }
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .brand span {
+      color: var(--accent);
+    }
+
+    /* Player */
+    .player {
+      position: relative;
+      width: 100%;
+      background: #000;
+    }
+    video {
+      width: 100%;
+      display: block;
+      max-height: 480px;
+    }
+    .overlay-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .overlay-play:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    /* Info section */
+    .info {
+      padding: 16px;
+    }
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .meta {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    /* Buttons */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      background: rgba(255,255,255,0.05);
+      border: none;
+      color: var(--white);
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    /* More Like This */
+    .more {
+      padding: 16px;
+    }
+    .more h3 {
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+    .more-list {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      width: 120px;
+    }
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .card p {
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+
+    /* Scrollbar hide */
+    .more-list::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <button class="back" onclick="history.back()"><i class='bx bx-arrow-back'></i></button>
+    <div class="brand">Chill<span>Out</span></div>
+  </div>
+
+  <div class="player">
+    <video id="videoPlayer" poster="" controls>
+      <source id="videoSrc" src="" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+    <button class="overlay-play" id="playBtn"><i class='bx bx-play'></i></button>
+  </div>
+
+  <div class="info">
+    <div class="title" id="movieTitle">Loading...</div>
+    <div class="meta" id="movieMeta">2025 • Action / Adventure / Sci-Fi</div>
+
+    <div class="actions">
+      <button class="btn" id="favBtn"><i class='bx bx-heart'></i> Favorite</button>
+      <a id="downloadBtn" class="btn" download><i class='bx bx-download'></i> Download</a>
+      <button class="btn" id="shareBtn"><i class='bx bx-share-alt'></i> Share</button>
+    </div>
+  </div>
+
+  <div class="more">
+    <h3>More Like This</h3>
+    <div class="more-list" id="moreList"></div>
+  </div>
+
+  <script>
+    // --- Simple auth guard: only allow logged-in users ---
+    (function() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (isLoggedIn !== 'true') {
+        // Not logged in -> send to sign-in page
+        window.location.href = 'signin.html';
+        return;
+      }
+    })();
+
+    // --- Get video details from URL parameters ---
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get("title") || "Unknown Movie";
+    const src = params.get("src") || "videos/sample.mp4";
+    const poster = params.get("poster") || src.replace(".mp4", ".jpg");
+
+    // Elements
+    const videoPlayer = document.getElementById("videoPlayer");
+    const videoSrc = document.getElementById("videoSrc");
+    const playBtn = document.getElementById("playBtn");
+    const movieTitle = document.getElementById("movieTitle");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const favBtn = document.getElementById("favBtn");
+    const shareBtn = document.getElementById("shareBtn");
+    const moreList = document.getElementById("moreList");
+
+    // Setup player
+    movieTitle.textContent = decodeURIComponent(title);
+    videoSrc.src = decodeURIComponent(src);
+    videoPlayer.poster = decodeURIComponent(poster);
+    downloadBtn.href = decodeURIComponent(src);
+
+    // Play / Pause overlay
+    playBtn.addEventListener("click", () => {
+      videoPlayer.play();
+      playBtn.style.display = "none";
+    });
+    videoPlayer.addEventListener("play", () => playBtn.style.display = "none");
+    videoPlayer.addEventListener("pause", () => playBtn.style.display = "flex");
+
+    // Favorite
+    favBtn.addEventListener("click", () => {
+      favBtn.classList.toggle("active");
+      favBtn.style.background = favBtn.classList.contains("active") ? "var(--accent)" : "rgba(255,255,255,0.05)";
+    });
+
+    // Share
+    shareBtn.addEventListener("click", async () => {
+      const shareData = {
+        title: movieTitle.textContent,
+        text: "Watch on ChillOut",
+        url: location.href
+      };
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        prompt("Copy this link to share:", location.href);
+      }
+    });
+
+    // More like this section
+    const moreMovies = [
+      { title: "Avatar", img: "images/movies/avatar.jpg", video: "videos/avatar.mp4" },
+      { title: "The Batman", img: "images/movies/bat-man.jpg", video: "videos/bat-man.mp4" },
+      { title: "Doctor Strange", img: "images/movies/doctor-strange.jpg", video: "videos/doctor-strange.mp4" },
+      { title: "Avengers: Endgame", img: "images/movies/end-game.jpg", video: "videos/end-game.mp4" },
+      { title: "Black Panther", img: "images/movies/black-panther.jpg", video: "videos/black-panther.mp4" }
+    ];
+
+    moreMovies.forEach(m => {
+      const card = document.createElement("a");
+      card.className = "card";
+      card.href = `movie-player.html?title=${encodeURIComponent(m.title)}&src=${encodeURIComponent(m.video)}&poster=${encodeURIComponent(m.img)}`;
+      card.innerHTML = `<img src="${m.img}" alt="${m.title}"><p>${m.title}</p>`;
+      moreList.appendChild(card);
+    });
+  </script>
+</body>
+</html>

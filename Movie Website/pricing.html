@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Pricing - ChillOut</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="shortcut icon" href="./images/movie logo.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="grid.css">
+  <link rel="stylesheet" href="app.css">
+
+  <style>
+    .pricing-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .pricing-card {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 15px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      flex: 1 1 300px;
+      max-width: 340px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+    }
+    .pricing-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--main-color);
+    }
+    .pricing-price {
+      font-size: 2.5rem;
+      margin: 0.5rem 0;
+      font-weight: 700;
+    }
+    .pricing-period {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 1rem;
+    }
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1.5rem;
+    }
+    .pricing-features li {
+      padding: 0.4rem 0;
+      color: #ddd;
+    }
+    .btn-subscribe {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <div class="nav-wrapper">
+    <div class="container">
+      <div class="nav">
+        <a href="index.html" class="logo">
+          <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+        </a>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="genre.html">Genre</a></li>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="series.html">Series</a></li>
+          <li><a href="pricing.html" class="active">Pricing</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="signin.html" class="btn btn-hover"><span>Sign in</span></a></li>
+        </ul>
+        <div class="hamburger-menu" id="hamburger-menu"><div class="hamburger"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing Section -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header">Choose Your Plan</div>
+
+      <div class="pricing-container">
+        <!-- Basic Plan -->
+        <div class="pricing-card">
+          <h3 class="pricing-title">Basic</h3>
+          <div class="pricing-price">$4.99</div>
+          <div class="pricing-period">per month</div>
+          <ul class="pricing-features">
+            <li><i class="bx bx-check-circle"></i> Access to standard library</li>
+            <li><i class="bx bx-check-circle"></i> 720p Streaming</li>
+            <li><i class="bx bx-x-circle"></i> No Offline Downloads</li>
+            <li><i class="bx bx-x-circle"></i> 1 Device Only</li>
+          </ul>
+          <a href="signin.html" class="btn btn-hover btn-subscribe"><span>Subscribe</span></a>
+        </div>
+
+        <!-- Standard Plan -->
+        <div class="pricing-card" style="border:2px solid var(--main-color)">
+          <h3 class="pricing-title">Standard</h3>
+          <div class="pricing-price">$9.99</div>
+          <div class="pricing-period">per month</div>
+          <ul class="pricing-features">
+            <li><i class="bx bx-check-circle"></i> Full Movie & Series Library</li>
+            <li><i class="bx bx-check-circle"></i> 1080p Streaming</li>
+            <li><i class="bx bx-check-circle"></i> Offline Downloads</li>
+            <li><i class="bx bx-check-circle"></i> Watch on 2 Devices</li>
+          </ul>
+          <a href="signin.html" class="btn btn-hover btn-subscribe"><span>Subscribe</span></a>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="pricing-card">
+          <h3 class="pricing-title">Premium</h3>
+          <div class="pricing-price">$14.99</div>
+          <div class="pricing-period">per month</div>
+          <ul class="pricing-features">
+            <li><i class="bx bx-check-circle"></i> Full Library + New Releases</li>
+            <li><i class="bx bx-check-circle"></i> 4K Ultra HD Streaming</li>
+            <li><i class="bx bx-check-circle"></i> Offline Downloads</li>
+            <li><i class="bx bx-check-circle"></i> Up to 4 Devices</li>
+            <li><i class="bx bx-check-circle"></i> Priority Support</li>
+          </ul>
+          <a href="signin.html" class="btn btn-hover btn-subscribe"><span>Subscribe</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-md-6 col-sm-12">
+                    <div class="content">
+                        <a href="" class="logo">
+                            <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+                        </a>
+                        <p>
+                            At ChillOut, we believe entertainment should be simple, fun, and available anytime you need a break. From the latest blockbuster movies to timeless classics and trending series, our platform brings everything together in one seamless experience. Enjoy smooth streaming, personalized recommendations, and the freedom to watch anywhere, anytime — no limits, no interruptions, just pure cinematic joy.
+                        </p>
+                        <div class="social-list">
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>ChillOut</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="pricing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Browse</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="pricing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Help</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="princing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Download app</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/google-play.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/app-store.png" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- COPYRIGHT SECTION -->
+    <div class="copyright">
+        Copyright 2023  
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

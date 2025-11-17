@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Contacts - ChillOut</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="shortcut icon" href="./images/movie logo.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="grid.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="nav-wrapper">
+    <div class="container">
+      <div class="nav">
+        <a href="index.html" class="logo">
+          <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+        </a>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="genre.html">Genre</a></li>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="series.html">Series</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="signin.html" class="btn btn-hover"><span>Sign in</span></a></li>
+        </ul>
+        <div class="hamburger-menu" id="hamburger-menu"><div class="hamburger"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-header">Contact Us</div>
+
+      <div class="row">
+        <div class="col-6 col-md-12">
+          <form action="/contact" method="POST" class="contact-form">
+            <div class="input-group">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" placeholder="Full name" required>
+            </div>
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
+            </div>
+            <div class="input-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="How can we help?" required></textarea>
+            </div>
+            <div class="input-group">
+              <button type="submit" class="btn btn-hover"><span>Send message</span></button>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-6 col-md-12">
+          <h4>Support</h4>
+          <p>Email: support@chillout.example</p>
+          <p>Phone: +1 (555) 555-5555</p>
+          <p>Address: 123 Movie St, Film City</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="section"></footer>
+  <div class="copyright">Copyright 2023</div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

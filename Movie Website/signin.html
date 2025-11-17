@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Sign In - ChillOut</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="shortcut icon" href="./images/movie logo.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="grid.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="nav-wrapper">
+    <div class="container">
+      <div class="nav">
+        <a href="index.html" class="logo">
+          <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+        </a>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="genre.html">Genre</a></li>
+          <li><a href="movies.html">Movies</a></li>
+          <li><a href="series.html">Series</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="signin.html" class="btn btn-hover active"><span>Sign in</span></a></li>
+        </ul>
+        <div class="hamburger-menu" id="hamburger-menu"><div class="hamburger"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-header">Sign In</div>
+      <div class="row">
+        <div class="col-6 col-md-12">
+          <form class="auth-form" action="/login" method="POST">
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
+            </div>
+            <div class="input-group">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" placeholder="Your password" required>
+            </div>
+            <div class="input-group">
+              <button type="submit" class="btn btn-hover"><span>Sign in</span></button>
+            </div>
+            <div class="text-center" style="margin-top: 1rem;">
+              <p>Don't have an account? <a href="register.html" style="color: var(--main-color); text-decoration: none;">Register here</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 col-md-6 col-sm-12">
+                    <div class="content">
+                        <a href="" class="logo">
+                            <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+                        </a>
+                        <p>
+                            At ChillOut, we believe entertainment should be simple, fun, and available anytime you need a break. From the latest blockbuster movies to timeless classics and trending series, our platform brings everything together in one seamless experience. Enjoy smooth streaming, personalized recommendations, and the freedom to watch anywhere, anytime — no limits, no interruptions, just pure cinematic joy.
+                        </p>
+                        <div class="social-list">
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                            <a href="#" class="social-item">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>ChillOut</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="pricing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Browse</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="pricing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Help</b></p>
+                                <ul class="footer-menu">
+                                    <li><a href="about.html">About us</a></li>
+                                    <li><a href="myprofile.html">My profile</a></li>
+                                    <li><a href="princing.html">Pricing plans</a></li>
+                                    <li><a href="contacts.html">Contacts</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-6 col-sm-6">
+                            <div class="content">
+                                <p><b>Download app</b></p>
+                                <ul class="footer-menu">
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/google-play.png" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="./images/app-store.png" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER SECTION -->
+
+    <!-- COPYRIGHT SECTION -->
+    <div class="copyright">
+        Copyright 2023  
+    </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Sign in with backend API
+    document.querySelector('.auth-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+      };
+      
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('userEmail', formData.email);
+          alert(data.message);
+          window.location.href = 'index.html';
+        } else {
+          alert(data.message);
+        }
+      } catch (error) {
+        alert('Sign in failed. Please try again.');
+        console.error('Error:', error);
+      }
+    });
+  </script>
+</body>
+</html>

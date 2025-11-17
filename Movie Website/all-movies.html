@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>All Movies - ChillOut</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="shortcut icon" href="./images/movie logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="grid.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="nav-wrapper">
+    <div class="container">
+      <div class="nav">
+        <a href="index.html" class="logo">
+          <i class='bx bx-movie-play bx-tada main-color'></i>Chill<span class="main-color">Out</span>
+        </a>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="genre.html">Genre</a></li>
+          <li><a href="movies.html" class="active">Movies</a></li>
+          <li><a href="series.html">Series</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>
+            <a href="signin.html" class="btn btn-hover"><span>Sign in</span></a>
+          </li>
+        </ul>
+        <div class="hamburger-menu" id="hamburger-menu">
+          <div class="hamburger"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOVIE GRID -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header">All Movies</div>
+      <div class="row" id="movieGrid"></div>
+    </div>
+  </div>
+
+  <script>
+    const movies = [
+      { title: "Resident Evil", img: "images/movies/resident-evil.jpg", video: "videos/resident-evil.mp4" },
+      { title: "Captain Marvel", img: "images/movies/captain-marvel.jpg", video: "videos/captain-marvel.mp4" },
+      { title: "Avatar", img: "images/movies/avatar.jpg", video: "videos/avatar.mp4" },
+      { title: "The Dark Knight", img: "images/movies/dark-knight.jpg", video: "videos/dark-knight.mp4" },
+      { title: "Doctor Strange", img: "images/movies/doctor-strange.jpg", video: "videos/doctor-strange.mp4" },
+      { title: "Free Guy", img: "images/movies/free-guy.jpg", video: "videos/free-guy.mp4" },
+      { title: "Deadpool 3", img: "images/movies/deadpool-3.jpg", video: "videos/deadpool-3.mp4" },
+      { title: "Jurassic World", img: "images/movies/jurassic-world.jpg", video: "videos/jurassic-world.mp4" }
+    ];
+
+    const grid = document.getElementById("movieGrid");
+    movies.forEach(m => {
+      const div = document.createElement("div");
+      div.className = "col-3 col-md-6 col-sm-12";
+      div.innerHTML = `
+        <a href="movie-player.html?title=${encodeURIComponent(m.title)}&src=${encodeURIComponent(m.video)}&poster=${encodeURIComponent(m.img)}" class="movie-item">
+          <img src="${m.img}" alt="${m.title}">
+          <div class="movie-item-content">
+            <div class="movie-item-title">${m.title}</div>
+          </div>
+        </a>
+      `;
+      grid.appendChild(div);
+    });
+  </script>
+</body>
+</html>
